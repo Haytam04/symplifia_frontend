@@ -1,0 +1,14 @@
+<div class="logo-container">
+    <h1 class="logo">SYMPLIFIA</h1>
+</div>
+<div class="header">
+    <h2>Hello, Name</h2>
+  </div>
+  
+  <div class="month-cards">
+    <div *ngFor="let month of months" [ngClass]="getMonthCardClass(month)" class="month-card">
+      <p>{{ month }}</p>
+      <p>{{ getMonthCardText(month) }}</p>
+      <button *ngIf="getMonthCardText(month) === 'Pay'" class="pay-button">Pay</button>
+    </div>
+  </div>

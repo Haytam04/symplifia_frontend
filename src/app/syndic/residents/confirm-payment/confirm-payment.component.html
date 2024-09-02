@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Confirm Payment</h1>
+<div mat-dialog-content>
+  <h3>Do you want to confirm that you have received payment from resident : </h3>
+  <p>Name : {{this.data.resident.fullName}}</p>
+  <p>Month Payed : {{this.data.invoice.invoiceMonth}}</p>
+  <p>Payment Method : {{this.data.invoice.paymentMethod}}</p>
+  <p>Price : {{this.data.invoice.price}} Dh</p>
+</div>
+<div class="dialog-actions" mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="confirmPayment()">Yes</button>
+  <button mat-raised-button mat-dialog-close>No</button>
+</div>

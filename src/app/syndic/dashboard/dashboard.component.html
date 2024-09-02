@@ -1,0 +1,34 @@
+
+<div class="dashboard-container">
+    <div class="date-filter-container">
+        <mat-form-field>
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startPicker" [formControl]="startDateControl"
+            [min]="minDate" [max]="maxDate" (dateChange)="onDateChange()" placeholder="Start Date">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+    
+        <mat-form-field>
+          <mat-label>End Date</mat-label>
+          <input matInput [matDatepicker]="endPicker" [formControl]="endDateControl"
+          [min]="minDate" [max]="maxDate" (dateChange)="onDateChange()" placeholder="End Date">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+    <div class="dashboard-item">
+        <h3>Total Invoice Price</h3>
+        <p class="invoice-p">{{ totalInvoicePrice }} DH</p>
+    </div>
+    <div class="dashboard-item">
+        <h3>Total Expense Cost</h3>
+        <p class="expense-p">{{ totalExpenseCost }} DH</p>
+    </div>
+    <div class="dashboard-item">
+        <h3>Remaining</h3>
+        <p class="remaining-p">{{ remaining }} DH</p>
+    </div>
+</div>
+

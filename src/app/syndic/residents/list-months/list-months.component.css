@@ -1,0 +1,70 @@
+  h3 {
+  margin: 0 auto;
+  text-align: center;
+  }
+  .month-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Center the cards */
+  }
+  .dialog-container {
+    max-height: calc(100vh - 150px); /* Keeps the dialog responsive vertically */
+    overflow-y: auto;
+  }
+  .month-card {
+    margin: 10px;
+    padding: 20px;
+    border: 1.5px solid #ccc;
+    border-color: #000000;
+    border-radius: 6px;
+    text-align: center;
+    width: 93px;
+    height: 70px;
+  }
+  .pending-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centers content vertically */
+    padding: 0 10px; /* Add some padding */
+  }
+  mat-icon {
+    cursor: pointer;
+  }
+  .mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color.ng-star-inserted {
+    color: #ffffff;
+  }
+  .mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color:hover {
+    color: #000000;
+   }
+  .mdc-button {
+    height: 50px;
+  }
+
+  p {
+    font-weight: 500;
+    color: #000000;
+  }
+  .mdc-button {
+    color: #000000;
+  }
+  
+  .month-card.payed {
+    background-color: #58df78; /* Green background for Payed */
+  }
+  
+  .month-card.pending {
+    background-color: #60c7ff; /* Blue background for Pending */
+  }
+  
+  .month-card.not-paid {
+    background-color: #e65662; /* Red background for Not Paid */
+  }
+  .month-card.not-started {
+    background-color: #a2999a; /* Red background for Not Paid */
+  }

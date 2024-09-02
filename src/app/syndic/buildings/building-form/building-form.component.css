@@ -1,0 +1,24 @@
+.dialog-container {
+  padding: 24px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Optional: You can also add padding to the dialog's container */
+.mat-dialog-container {
+  padding: 16px 24px;
+  border-radius: 8px;
+}
+
+/* Increase input font size */
+mat-form-field input {
+  font-size: 16px;
+}

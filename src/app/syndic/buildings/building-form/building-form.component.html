@@ -1,0 +1,48 @@
+<div class="dialog-container">
+    <h2 mat-dialog-title>{{ data.isUpdate ? 'Update Building' : 'Create Building' }}</h2>
+    <form [formGroup]="buildingForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Building Name</mat-label>
+        <input matInput formControlName="name" required>
+
+          <mat-error *ngIf="buildingForm.get('name')?.hasError('maxlength')">
+            Name cannot exceed 30 characters.
+          </mat-error>
+          <mat-error *ngIf="buildingForm.get('name')?.hasError('empty')">
+            Name cannot be empty.
+          </mat-error>
+
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Syndic Price</mat-label>
+        <input matInput formControlName="syndicPrice" type="number" required>
+
+          <mat-error *ngIf="buildingForm.get('syndicPrice')?.hasError('required')">
+            Syndic Price cannot be empty.
+          </mat-error>
+          <mat-error *ngIf="buildingForm.get('syndicPrice')?.hasError('pattern')">
+            Syndic Price must be a number.
+          </mat-error>
+
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" required>
+
+          <mat-error *ngIf="buildingForm.get('location')?.hasError('maxlength')">
+            location cannot exceed 30 characters.
+          </mat-error>
+          <mat-error *ngIf="buildingForm.get('location')?.hasError('empty')">
+            Location cannot be empty.
+          </mat-error>
+
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">{{ data.isUpdate ? 'Update' : 'Create' }}</button>
+      <button mat-stroked-button mat-dialog-close>Cancel</button>
+    </form>
+  </div>
+  
+  
