@@ -11,6 +11,7 @@ import { Invoice } from '../models/Invoice';
 export class UserComponent {
   invoices: Invoice[] = [];
   months = Array.from({ length: 12 }, (_, i) => i + 1); // Array from 1 to 12 representing months
+  idUser!: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,13 +19,13 @@ export class UserComponent {
   ) {}
 
   ngOnInit(): void {
-    const idUser = this.route.snapshot.params['idUser'];
+    this.idUser = this.route.snapshot.params['idUser'];
     const currentYear = new Date().getFullYear();
-    this.userService.getInvoicesForResidentByYear(idUser, currentYear).subscribe((data) => {
+    this.userService.getInvoicesForResidentByYear(this.idUser, currentYear).subscribe((data) => {
       this.invoices = data;
     });
   }
-
+  
   getMonthCardClass(month: number): string {
     const invoice = this.invoices.find(i => i.invoiceMonth === month);
     if (invoice) {

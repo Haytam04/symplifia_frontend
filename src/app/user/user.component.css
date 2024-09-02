@@ -1,79 +1,90 @@
-.logo-container {
-    height: 45px;
-    width: 120px;
-    position: fixed;
-    border-radius: 6px;
-    top: 0;
-    left: 0;
-    background-color: #2c3e50;
-    color: #fff;
-    padding-top: 10px; 
-    z-index: 1000;
-  }
-  
-  .logo-container h1.logo {
-    font-weight:bolder;
-    text-align: center;
-    font-size: 16px;
-    color: #b4b4b4;
-    cursor: pointer;
-  }
-  .header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .month-cards {
-    margin: 0 auto;
-    width: 700px;
-    height: 450px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  .month-card {
-    margin: 10px;
-    padding: 20px;
-    border-radius: 6px;
-    text-align: center;
-    width: 93px;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1.5px solid #ccc;
-    border-color: #000000;
-    
-  }
-  
-  .month-card.green {
-    background-color: #58df78;
-  }
-  
-  .month-card.orange {
-    background-color: #f3b064;
-  }
-  
-  .month-card.blue {
-    background-color: #60c7ff;
-  }
-  
-  .month-card.grey {
-    background-color: #a2999a;
-  }
-  
-  .pay-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 6px 30px;
-    border-radius: 4px; 
-    cursor: pointer;
-  }
-  
-  .pay-button:hover {
-    background-color: #0056b3;
-  }
-  
+.navbar {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #2c3e50;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-weight: bolder;
+  font-size: 16px;
+  margin: 10px 20px;
+  color: #b4b4b4;
+  cursor: pointer;
+}
+
+.navbar-links {
+  display: flex;
+  width: 200px;
+  justify-content: space-evenly;
+}
+
+.navbar-links .nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar-links .nav-link:hover {
+  color: #b4b4b4;
+}
+
+.month-cards {
+  margin: 60px auto 0; /* Add margin-top to account for the fixed navbar */
+  width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.month-card {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  width: 93px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid #000;
+}
+
+.month-card.green {
+  background-color: #58df78;
+}
+
+.month-card.orange {
+  background-color: #f3b064;
+}
+
+.month-card.blue {
+  background-color: #60c7ff;
+}
+
+.month-card.grey {
+  background-color: #a2999a;
+}
+
+.pay-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pay-button:hover {
+  background-color: #0056b3;
+}

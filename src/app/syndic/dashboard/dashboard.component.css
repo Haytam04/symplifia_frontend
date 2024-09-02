@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 20px;
+    padding: 25px;
     background-color: #f5f5f5;
     border-radius: 8px;
     max-width: 600px;
@@ -18,7 +18,7 @@
 }
 .dashboard-item {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     text-align: center;

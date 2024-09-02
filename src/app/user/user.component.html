@@ -1,10 +1,10 @@
-<div class="logo-container">
+<div class="navbar">
     <h1 class="logo">SYMPLIFIA</h1>
+    <div class="navbar-links">
+        <a [routerLink]="['/user', idUser]" routerLinkActive="active" class="nav-link">Dashboard</a>
+        <a href="#" class="nav-link">Logout</a>
+    </div>
 </div>
-<div class="header">
-    <h2>Hello, Name</h2>
-  </div>
-  
   <div class="month-cards">
     <div *ngFor="let month of months" [ngClass]="getMonthCardClass(month)" class="month-card">
       <p>{{ month }}</p>
