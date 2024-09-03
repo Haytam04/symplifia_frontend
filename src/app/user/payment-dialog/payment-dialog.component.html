@@ -1,21 +1,20 @@
 <h1 mat-dialog-title>Payment Details</h1>
-    <div mat-dialog-content>
-      <p>idSyndic: {{ data.idSyndic }}</p>
+    <div  mat-dialog-content>
       <p>Month: {{ data.month }}</p>
       <p>Year: {{ data.year }}</p>
-      <p>Syndic: {{ data.syndicFullName }}</p>
-      <div>
+      <p>Building Price: {{ data.buildingPrice }} Dh</p>
         <p>Payment Method:</p>
-        <button (click)="selectPaymentMethod('Cash')">Cash</button>
-        <button (click)="selectPaymentMethod('Bank Transfer')">Bank Transfer</button>
-      </div>
-      <div *ngIf="paymentMethod === 'Bank Transfer'">
+        <mat-radio-group [(ngModel)]="paymentMethod">
+          <mat-radio-button value="Cash">Cash</mat-radio-button>
+          <mat-radio-button value="Bank Transfer">Bank Transfer</mat-radio-button>
+        </mat-radio-group>
+      
+      <div class="bank-details" *ngIf="paymentMethod === 'Bank Transfer'">
         <p>Bank Name: {{ data.syndicBankName }}</p>
         <p>Bank Account: {{ data.syndicBankAccount }}</p>
       </div>
-      <p>Building Price: {{ data.buildingPrice }}</p>
     </div>
-    <div mat-dialog-actions>
+    <div class="dialog-actions" mat-dialog-actions>
       <button mat-button mat-dialog-close>Close</button>
       <button mat-button [mat-dialog-close]="true">Confirm</button>
     </div>

@@ -57,6 +57,7 @@ export class UserComponent {
     const year = new Date().getFullYear();
     this.userService.getPaymentDetails(this.idUser, month, year).subscribe((data: PaymentDetails) => {
       this.dialog.open(PaymentDialogComponent, {
+        width: '400px',
         data: {
           idSyndic: data.syndicId,
           month: data.month,
@@ -69,5 +70,4 @@ export class UserComponent {
       });
     });
   }
-
 }

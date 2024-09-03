@@ -8,14 +8,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./payment-dialog.component.css']
 })
 export class PaymentDialogComponent {
-  paymentMethod: string = '';
+  paymentMethod: string = 'Cash';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-  }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) 
+  {}
 
   selectPaymentMethod(method: string) {
     this.paymentMethod = method;
   }
-
 }

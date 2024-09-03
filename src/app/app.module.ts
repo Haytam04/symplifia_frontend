@@ -30,6 +30,7 @@ import { ConfirmPaymentComponent } from './syndic/residents/confirm-payment/conf
 import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './user/user.component';
 import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.com
     MatOptionModule,
     MatSelectModule,
     MatSortModule,
-    MatIconModule
+    MatIconModule,
+    MatRadioModule
   ],
   providers: [BuildingService],
   bootstrap: [AppComponent]
