@@ -14,7 +14,7 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
 export class UserComponent {
   invoices: Invoice[] = [];
   months = Array.from({ length: 12 }, (_, i) => i + 1); // Array from 1 to 12 representing months
-  idUser!: any;
+  idUser: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,7 +59,8 @@ export class UserComponent {
       this.dialog.open(PaymentDialogComponent, {
         width: '400px',
         data: {
-          idSyndic: data.syndicId,
+          idUser: this.idUser,
+          syndicId: data.syndicId,
           month: data.month,
           year: data.year,
           syndicFullName: data.syndicFullName,

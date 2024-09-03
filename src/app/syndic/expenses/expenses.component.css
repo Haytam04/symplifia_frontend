@@ -20,9 +20,6 @@ mat-form-field {
   margin-bottom: 15px;
 }
 
-.mat-mdc-header-cell.mdc-data-table__header-cell.cdk-header-cell.cdk-column-actions {
-  padding-left: 25px;
-}
 .mat-paginator {
   display: flex;
   justify-content: center;

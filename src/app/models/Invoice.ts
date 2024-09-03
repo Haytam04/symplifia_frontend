@@ -1,10 +1,13 @@
-export class Invoice {
-    idInvoice!: number;
-    invoiceMonth!: number;
-    invoiceYear!: number;
-    invoiceDate!: Date;
-    price!: number;
-    paymentStatue!: 'Payed' | 'Pending';
-    paymentMethod!: 'BankTransfer' | 'Cash';
-    idSyndic!: number;
+export interface Invoice {
+    idInvoice?: number;
+    invoiceMonth: any;
+    invoiceYear: number;
+    invoiceDate: Date;
+    price: number;
+    paymentStatue: 'Payed' | 'Pending';
+    paymentMethod: string;
+    idSyndic?: string;
+    syndic?: any;
+    resident?: any;
+    idResident?: string;
   }

@@ -45,8 +45,8 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let expense">
-      <button mat-button (click)="openUpdateExpenseDialog(expense)">Update</button>
-      <button mat-button color="warn" (click)="deleteExpense(expense.idExpense)">Delete</button>
+      <button mat-stroked-button (click)="openUpdateExpenseDialog(expense)">Update</button>
+      <button mat-stroked-button color="warn" (click)="deleteExpense(expense.idExpense)">Delete</button>
     </td>
   </ng-container>
 
