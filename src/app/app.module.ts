@@ -29,6 +29,7 @@ import { ListMonthsComponent } from './syndic/residents/list-months/list-months.
 import { ConfirmPaymentComponent } from './syndic/residents/confirm-payment/confirm-payment.component';
 import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './user/user.component';
+import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { UserComponent } from './user/user.component';
     DeleteDialogComponent,
     ListMonthsComponent,
     ConfirmPaymentComponent,
-    UserComponent
+    UserComponent,
+    PaymentDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@
     <div *ngFor="let month of months" [ngClass]="getMonthCardClass(month)" class="month-card">
       <p>{{ month }}</p>
       <p>{{ getMonthCardText(month) }}</p>
-      <button *ngIf="getMonthCardText(month) === 'Pay'" class="pay-button">Pay</button>
+      <button *ngIf="getMonthCardText(month) === 'Pay'" class="pay-button"
+      (click)="onPayButtonClick(month)"
+      >Pay</button>
     </div>
   </div>

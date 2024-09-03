@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './user.service';
 import { Invoice } from '../models/Invoice';
+import { MatDialog } from '@angular/material/dialog';
+import { PaymentDetails } from '../models/PaymentDetails';
+import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -15,7 +18,8 @@ export class UserComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +52,22 @@ export class UserComponent {
     } else {
       return 'Not Started';
     }
+  }
+  onPayButtonClick(month: any) {
+    const year = new Date().getFullYear();
+    this.userService.getPaymentDetails(this.idUser, month, year).subscribe((data: PaymentDetails) => {
+      this.dialog.open(PaymentDialogComponent, {
+        data: {
+          idSyndic: data.syndicId,
+          month: data.month,
+          year: data.year,
+          syndicFullName: data.syndicFullName,
+          syndicBankName: data.syndicBankName,
+          syndicBankAccount: data.syndicBankAccount,
+          buildingPrice: data.buildingPrice
+        }
+      });
+    });
   }
 
 }
