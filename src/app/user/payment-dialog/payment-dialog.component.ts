@@ -1,8 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from 'src/app/models/Invoice';
 import { PaymentService } from '../payment/payment.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -11,8 +13,10 @@ import { PaymentService } from '../payment/payment.service';
   styleUrls: ['./payment-dialog.component.css']
 })
 export class PaymentDialogComponent {
+  @Output() paymentConfirmed: EventEmitter<void> = new EventEmitter<void>();
   paymentMethod: string = 'BankTransfer';
   idUser: any;
+
 
   constructor(
       public dialogRef: MatDialogRef<PaymentDialogComponent>,
@@ -21,6 +25,8 @@ export class PaymentDialogComponent {
       private paymentService: PaymentService
         ) 
   {}
+
+
 
   ngOnInit(): void {
     this.idUser = this.route.snapshot.params['idUser'];
@@ -46,13 +52,15 @@ export class PaymentDialogComponent {
       (response) => {
         console.log('Invoice created successfully', response);
         this.dialogRef.close(true);
+        this.paymentConfirmed.emit();
       },
       (error) => {
         console.error('Error creating invoice', error);
         this.dialogRef.close(false);
       }
     );
-  } 
+
+  }
 
   selectPaymentMethod(method: any) {
     this.paymentMethod = method;

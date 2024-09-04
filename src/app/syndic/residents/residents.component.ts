@@ -72,10 +72,10 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
       } else if (!invoice) {
         return 'Not Paid';
       } else {
-        paymentStatuses.push('Payed');
+        paymentStatuses.push('Paid');
       }
     }
-    return paymentStatuses.every(status => status === 'Payed') ? 'Payed': '';  
+    return paymentStatuses.every(status => status === 'Paid') ? 'Paid': '';  
   }
 
   applyFilter(event: Event) {
@@ -97,8 +97,8 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
 
   getPaymentStatusClass(paymentStatus: string): string {
     switch (paymentStatus) {
-      case 'Payed':
-        return 'payment-status-payed';
+      case 'Paid':
+        return 'payment-status-paid';
       case 'Pending':
         return 'payment-status-pending';
       case 'Not Paid':

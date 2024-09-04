@@ -21,7 +21,6 @@ const routes: Routes = [
       { path: 'expenses', component: ExpensesComponent} 
     ]
   },
-
   {
     path: 'user/:idUser', component: UserComponent
   }  

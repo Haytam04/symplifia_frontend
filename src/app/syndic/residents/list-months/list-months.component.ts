@@ -28,7 +28,7 @@ export class ListMonthsComponent {
       if (month <= currentMonth) {
         const invoice = invoices.find(inv => inv.invoiceMonth === month);
         if (invoice) {
-          paymentStatus = invoice.paymentStatue === 'Payed' ? 'Payed' : 'Pending';
+          paymentStatus = invoice.paymentStatue === 'Payed' ? 'Paid' : 'Pending';
         } else {
           paymentStatus = 'Not Paid';
         }
@@ -50,8 +50,8 @@ export class ListMonthsComponent {
 
   getCardClass(paymentStatus: string): string {
     switch (paymentStatus) {
-      case 'Payed':
-        return 'payed';
+      case 'Paid':
+        return 'paid';
       case 'Pending':
         return 'pending';
       case 'Not Paid':

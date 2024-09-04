@@ -11,8 +11,8 @@
     <div class="month-cards">
         <div *ngFor="let monthData of months" class="month-card" [ngClass]="getCardClass(monthData.paymentStatus)">
           <ng-container [ngSwitch]="monthData.paymentStatus">
-            <p *ngSwitchCase="'Payed'"> {{ monthData.month }} </p>
-            <p *ngSwitchCase="'Payed'"> {{ monthData.paymentStatus }}</p>
+            <p *ngSwitchCase="'Paid'"> {{ monthData.month }} </p>
+            <p *ngSwitchCase="'Paid'"> {{ monthData.paymentStatus }}</p>
 
             <p *ngSwitchCase="'Not Paid'"> {{ monthData.month }}</p>
             <p *ngSwitchCase="'Not Paid'"> {{ monthData.paymentStatus }}</p>

@@ -29,6 +29,12 @@ export class UserComponent {
       this.invoices = data;
     });
   }
+  loadInvoices() {
+    const currentYear = new Date().getFullYear();
+    this.userService.getInvoicesForResidentByYear(this.idUser, currentYear).subscribe((data) => {
+      this.invoices = data;
+    });
+  }
   
   getMonthCardClass(month: number): string {
     const invoice = this.invoices.find(i => i.invoiceMonth === month);
@@ -56,7 +62,7 @@ export class UserComponent {
   onPayButtonClick(month: any) {
     const year = new Date().getFullYear();
     this.userService.getPaymentDetails(this.idUser, month, year).subscribe((data: PaymentDetails) => {
-      this.dialog.open(PaymentDialogComponent, {
+      const dialogRef = this.dialog.open(PaymentDialogComponent, {
         width: '400px',
         data: {
           idUser: this.idUser,
@@ -68,6 +74,13 @@ export class UserComponent {
           syndicBankAccount: data.syndicBankAccount,
           buildingPrice: data.buildingPrice
         }
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        this.idUser = this.route.snapshot.params['idUser'];
+        const currentYear = new Date().getFullYear();
+        this.userService.getInvoicesForResidentByYear(this.idUser, currentYear).subscribe((data) => {
+        this.invoices = data;
+    });
       });
     });
   }

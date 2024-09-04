@@ -31,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './user/user.component';
 import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.component';
 import {MatRadioModule} from '@angular/material/radio';
+import {  MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSelectModule,
     MatSortModule,
     MatIconModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ],
   providers: [BuildingService],
   bootstrap: [AppComponent]
