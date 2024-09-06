@@ -32,6 +32,7 @@ import { UserComponent } from './user/user.component';
 import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {  MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoginComponent } from './authentification/login/login.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {  MatSnackBarModule } from '@angular/material/snack-bar';
     ListMonthsComponent,
     ConfirmPaymentComponent,
     UserComponent,
-    PaymentDialogComponent
+    PaymentDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -68,7 +68,6 @@ export class ListMonthsComponent {
       width: '350px',
       data: {resident: this.data.resident, invoice}
     });
-
     dialogRef.componentInstance.paymentConfirmed.subscribe(() => {
       this.dialog.closeAll();
     });

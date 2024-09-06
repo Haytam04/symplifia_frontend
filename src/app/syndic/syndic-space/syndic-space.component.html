@@ -2,11 +2,11 @@
     <h1 class="logo">SYMPLIFIA</h1>
     <button class="close-btn" *ngIf="sidebarOpen" (click)="toggleSidebar()">&#x2715;</button>
     <nav>
-      <a [routerLink]="['/syndic', idSyndic, 'dashboard']" routerLinkActive="active" (click)="toggleSidebar()">Dashboard</a>
-      <a [routerLink]="['/syndic', idSyndic, 'building']" routerLinkActive="active" (click)="toggleSidebar()">Building</a>
-      <a [routerLink]="['/syndic', idSyndic, 'residents']" routerLinkActive="active" (click)="toggleSidebar()">Residents</a>
-      <a [routerLink]="['/syndic', idSyndic, 'expenses']" routerLinkActive="active" (click)="toggleSidebar()">Expenses</a>
-      <a href="#"  (click)="toggleSidebar()">Log out</a>
+      <a [routerLink]="['/syndic', 'dashboard']" routerLinkActive="active" (click)="toggleSidebar()">Dashboard</a>
+      <a [routerLink]="['/syndic', 'building']" routerLinkActive="active" (click)="toggleSidebar()">Building</a>
+      <a [routerLink]="['/syndic', 'residents']" routerLinkActive="active" (click)="toggleSidebar()">Residents</a>
+      <a [routerLink]="['/syndic', 'expenses']" routerLinkActive="active" (click)="toggleSidebar()">Expenses</a>
+      <a (click)="Logout()">Log out</a>
     </nav>
   </div>
   

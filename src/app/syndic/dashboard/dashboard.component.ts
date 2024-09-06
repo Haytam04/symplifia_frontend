@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from './dashboard.service';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -27,10 +26,11 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService,
               private datePipe: DatePipe,
-              private activatedRoute: ActivatedRoute) {}
+              ) {}
 
   ngOnInit(): void {
-    this.idSyndic = this.activatedRoute.parent?.snapshot.params['idSyndic'];
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.idSyndic = user.idSyndic;
     this.onDateChange();
   }
 
@@ -51,6 +51,4 @@ export class DashboardComponent implements OnInit {
       );
     }
   }
-
-
 }

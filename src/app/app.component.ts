@@ -10,12 +10,6 @@ export class AppComponent {
 
   constructor(private router: Router){}
 
-  navigateToSyndic() {
-    this.router.navigate(['/syndic/1']);
-  }
-  navigateToUser() {
-    this.router.navigate(['/user/1']);
-  }
 
   title = 'symplifia';
 }

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './user.service';
 import { Invoice } from '../models/Invoice';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentDetails } from '../models/PaymentDetails';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
+import { AuthService } from '../authentification/auth.service';
+
 
 @Component({
   selector: 'app-user',
@@ -17,21 +19,19 @@ export class UserComponent {
   idUser: any;
 
   constructor(
-    private route: ActivatedRoute,
+    private route: Router,
     private userService: UserService,
-    private dialog: MatDialog,
+    private dialog: MatDialog, // Assuming AuthService is a service that provides access to user data
   ) {}
 
   ngOnInit(): void {
-    this.idUser = this.route.snapshot.params['idUser'];
-    const currentYear = new Date().getFullYear();
-    this.userService.getInvoicesForResidentByYear(this.idUser, currentYear).subscribe((data) => {
-      this.invoices = data;
-    });
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.idUser = user.idResident;
+    this.loadInvoices();
+    console.log(this.idUser);
   }
-  loadInvoices() {
-    const currentYear = new Date().getFullYear();
-    this.userService.getInvoicesForResidentByYear(this.idUser, currentYear).subscribe((data) => {
+  loadInvoices(){
+    this.userService.getInvoicesForResidentByYear(this.idUser, new Date().getFullYear()).subscribe((data) => {
       this.invoices = data;
     });
   }
@@ -60,8 +60,7 @@ export class UserComponent {
     }
   }
   onPayButtonClick(month: any) {
-    const year = new Date().getFullYear();
-    this.userService.getPaymentDetails(this.idUser, month, year).subscribe((data: PaymentDetails) => {
+    this.userService.getPaymentDetails(this.idUser, month, new Date().getFullYear()).subscribe((data: PaymentDetails) => {
       const dialogRef = this.dialog.open(PaymentDialogComponent, {
         width: '400px',
         data: {
@@ -76,12 +75,12 @@ export class UserComponent {
         }
       });
       dialogRef.afterClosed().subscribe(() => {
-        this.idUser = this.route.snapshot.params['idUser'];
-        const currentYear = new Date().getFullYear();
-        this.userService.getInvoicesForResidentByYear(this.idUser, currentYear).subscribe((data) => {
-        this.invoices = data;
-    });
+        this.loadInvoices();
       });
     });
+  }
+  Logout() {
+    localStorage.removeItem('user');
+    this.route.navigate(['/']);
   }
 }

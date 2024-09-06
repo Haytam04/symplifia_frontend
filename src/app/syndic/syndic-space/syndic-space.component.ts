@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-syndic-space',
@@ -8,17 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SyndicSpaceComponent {
   sidebarOpen = false;
-  idSyndic!: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.idSyndic = this.activatedRoute.snapshot.paramMap.get('idSyndic')!;
-    console.log(this.idSyndic);
-    
-  }
+  constructor(private route: Router) {}
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
+  }
+  Logout(){
+    localStorage.removeItem('user');
+    this.route.navigate(['/']);
   }
 }

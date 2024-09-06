@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { BuildingService } from './building.service';
 import { Building } from 'src/app/models/Building';
-import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { BuildingFormComponent } from './building-form/building-form.component';
@@ -23,11 +22,11 @@ export class BuildingsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private buildingService: BuildingService,
-              private activatedRoute: ActivatedRoute,
               private dialog: MatDialog
   ) {}
   ngOnInit(): void {
-    this.idSyndic = this.activatedRoute.parent?.snapshot.params['idSyndic'];
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.idSyndic = user.idSyndic;  
     this.showBuildings();
   }
   ngAfterViewInit() {

@@ -1,7 +1,9 @@
 mat-radio-group {
     display: flex;
-    flex-direction: column;
     padding-bottom: 5px;
+}
+.mat-mdc-radio-touch-target {
+    padding: 0;
 }
 .mat-mdc-dialog-content {
     padding: 0px 25px;
@@ -13,7 +15,6 @@ mat-radio-group {
     margin-top: 5px;
 }
 .mat-mdc-radio-button.mat-accent {
-    --mdc-radio-selected-focus-icon-color: #9a006b;
     --mdc-radio-selected-hover-icon-color: #351fae;
     --mdc-radio-selected-icon-color: #3636d6;
     --mdc-radio-selected-pressed-icon-color: #351fae;

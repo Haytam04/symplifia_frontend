@@ -16,6 +16,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 })
 export class ResidentsComponent implements OnInit , AfterViewInit {
   residents: Resident[] = [];
+  idSyndic!: string;
   dataSource: MatTableDataSource<Resident> = new MatTableDataSource<Resident>();
   displayedColumns: string[] = ['fullName', 'phoneNumber', 'buildingName', 'paymentStatus','details'];
   selectedYear: number;
@@ -36,15 +37,16 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
   }
 
   ngOnInit():void {
-      const idSyndic = this.activatedRoute.parent?.snapshot.params['idSyndic']; 
-      this.fetchResidents(idSyndic, this.selectedYear);
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.idSyndic = user.idSyndic;
+    this.fetchResidents(this.idSyndic, this.selectedYear);
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  fetchResidents(idSyndic: number, year: number): void {
+  fetchResidents(idSyndic: string, year: number): void {
     this.residentService.getResidentsWithInvoices(idSyndic, year).subscribe(data => {
       this.residents = data.map((resident: Resident) => {
         return {
@@ -90,8 +92,7 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      const idSyndic = this.activatedRoute.parent?.snapshot.params['idSyndic'];
-      this.fetchResidents(idSyndic, this.selectedYear);
+      this.fetchResidents(this.idSyndic, this.selectedYear);
     });
   }
 

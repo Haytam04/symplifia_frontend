@@ -27,6 +27,7 @@
     color: #ecf0f1;
     display: block;
     transition:  0.3s;
+    cursor: pointer;
   }
   
   .sidebar nav a:hover, .sidebar nav a.active {

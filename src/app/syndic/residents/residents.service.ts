@@ -12,7 +12,7 @@ export class ResidentsService {
 
 
   constructor(private http: HttpClient) { }
-  getResidentsWithInvoices(syndicId: number, year: number): Observable<any> {
+  getResidentsWithInvoices(syndicId: string, year: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${syndicId}?year=${year}`);
   }
 

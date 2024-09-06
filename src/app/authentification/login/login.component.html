@@ -1,0 +1,28 @@
+
+<form (ngSubmit)="onLogin()">
+    <div class="login-container">
+    <mat-form-field>
+      <input matInput placeholder="Phone Number" [(ngModel)]="phoneNumber" name="phoneNumber" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-select placeholder="Select Role" [(ngModel)]="role" name="role" required>
+        <mat-option value="syndic">syndic</mat-option>
+        <mat-option value="resident">resident</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" type="submit">Login</button>
+    </div>
+  </form>
+
+  <div *ngIf="loginFailed" class="error">
+    Authentication failed. Please try again.
+  </div>
+
+
+  

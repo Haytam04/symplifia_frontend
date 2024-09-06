@@ -6,12 +6,16 @@ import { BuildingsComponent } from './syndic/buildings/buildings.component';
 import { ResidentsComponent } from './syndic/residents/residents.component';
 import { ExpensesComponent } from './syndic/expenses/expenses.component';
 import { UserComponent } from './user/user.component';
+import { LoginComponent } from './authentification/login/login.component';
 
 
 
 const routes: Routes = [
+  {
+    path: '', component: LoginComponent
+  },
   { 
-    path: 'syndic/:idSyndic', 
+    path: 'syndic', 
     component: SyndicSpaceComponent, 
     children: [
       { path: '', redirectTo:'dashboard' ,pathMatch: 'full' },
@@ -22,7 +26,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'user/:idUser', component: UserComponent
+    path: 'user', component: UserComponent
   }  
 ]; 
 

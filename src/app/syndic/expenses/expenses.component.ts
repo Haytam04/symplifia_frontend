@@ -36,7 +36,8 @@ export class ExpensesComponent implements OnInit, AfterViewInit  {
               private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.idSyndic = this.activatedRoute.parent?.snapshot.params['idSyndic'];
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.idSyndic = user.idSyndic;
     this.showExpenses();
   }
   ngAfterViewInit() {
