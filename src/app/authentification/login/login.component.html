@@ -1,28 +1,44 @@
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
-<form (ngSubmit)="onLogin()">
-    <div class="login-container">
+  <div class="login-container">
+      <h1>Login Form</h1>
     <mat-form-field>
-      <input matInput placeholder="Phone Number" [(ngModel)]="phoneNumber" name="phoneNumber" required>
+      <input matInput placeholder="Phone Number" formControlName="phoneNumber"  required>
+      <mat-error *ngIf="loginForm.get('phoneNumber')?.hasError('empty')">Phone cannot be empty</mat-error>
+      <mat-error *ngIf="loginForm.get('phoneNumber')?.hasError('maxlength')">Phone number must be 10 digits</mat-error>
+      <mat-error *ngIf="loginForm.get('phoneNumber')?.hasError('pattern')">Phone number must contain only numbers</mat-error>
     </mat-form-field>
   
     <mat-form-field>
-      <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+      <input matInput placeholder="Password" formControlName="password" type="password" required>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('empty')">Password cannot be empty</mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Password must contain at least 8 characters</mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('maxlength')">Password must not exceed 200 characters</mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('invalidPassword')">Password must contain at least letters and numbers</mat-error>
     </mat-form-field>
   
     <mat-form-field>
-      <mat-select placeholder="Select Role" [(ngModel)]="role" name="role" required>
+      <mat-select placeholder="Select Role" formControlName="role" name="role" required>
         <mat-option value="syndic">syndic</mat-option>
         <mat-option value="resident">resident</mat-option>
       </mat-select>
+      <mat-error *ngIf="loginForm.get('role')?.hasError('required')">Role is required</mat-error>
     </mat-form-field>
   
-    <button mat-raised-button color="primary" type="submit">Login</button>
+    <button mat-raised-button color="primary" type="submit">
+      Login
+    </button>
+    <div class="new-acc-container">
+      <a [routerLink]="['/sign-up']">If you d'ont have account, Create a new account</a>
     </div>
+    <div *ngIf="loginFailed" class="error">
+      Authentication failed. User not found.
+    </div>
+  </div>
   </form>
 
-  <div *ngIf="loginFailed" class="error">
-    Authentication failed. Please try again.
-  </div>
+
+ 
 
 
   

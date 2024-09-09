@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ResidentsService } from './residents.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Resident } from 'src/app/models/Resident';
 import { Invoice } from 'src/app/models/Invoice';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,7 +29,7 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
 
   constructor(
       private residentService: ResidentsService,
-      private activatedRoute: ActivatedRoute,
+      private router: Router,
       private dialog: MatDialog
   )
   {
@@ -37,7 +37,12 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
   }
 
   ngOnInit():void {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    let localStorageUser = localStorage.getItem('user');
+    if( !localStorageUser ) {
+      this.router.navigate(['/']);
+      return ;
+    }
+    let user = JSON.parse(localStorageUser);
     this.idSyndic = user.idSyndic;
     this.fetchResidents(this.idSyndic, this.selectedYear);
   }

@@ -5,6 +5,7 @@
         <a class="nav-link" (click)="Logout()" >Logout</a>
     </div>
 </div>
+ <h1>Months & Payment status</h1>
   <div class="month-cards">
     <div *ngFor="let month of months" [ngClass]="getMonthCardClass(month)" class="month-card">
       <p>{{ month }}</p>

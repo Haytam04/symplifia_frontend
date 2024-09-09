@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Expense } from 'src/app/models/Expense';
 import { ExpenseService } from './expense.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
@@ -32,11 +32,16 @@ export class ExpensesComponent implements OnInit, AfterViewInit  {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private expenseService: ExpenseService,
-              private activatedRoute: ActivatedRoute,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog,
+              private router: Router) {}
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    let localStorageUser = localStorage.getItem('user');
+    if( !localStorageUser ) {
+      this.router.navigate(['/']);
+      return ;
+    }
+    let user = JSON.parse(localStorageUser);
     this.idSyndic = user.idSyndic;
     this.showExpenses();
   }

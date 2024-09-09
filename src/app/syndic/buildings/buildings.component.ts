@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BuildingFormComponent } from './building-form/building-form.component';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buildings',
@@ -22,11 +23,17 @@ export class BuildingsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private buildingService: BuildingService,
-              private dialog: MatDialog
-  ) {}
+              private dialog: MatDialog,
+              private router: Router) {}
+ 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    this.idSyndic = user.idSyndic;  
+    let localStorageUser = localStorage.getItem('user');
+    if( !localStorageUser ) {
+      this.router.navigate(['/']);
+      return ;
+    }
+    let user = JSON.parse(localStorageUser);
+    this.idSyndic = user.idSyndic;
     this.showBuildings();
   }
   ngAfterViewInit() {

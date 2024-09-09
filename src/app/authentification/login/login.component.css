@@ -1,6 +1,54 @@
-.login-container{
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    margin: 100px auto;
+.login-container {
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto auto;
+  width: 400px;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+/* Style form fields */
+mat-form-field {
+  width: 100%; 
+  margin-bottom: 20px;
+}
+
+
+mat-error {
+  font-weight: 500;
+}
+
+
+button {
+  width: 100%; 
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #0f4982;
+}
+
+
+.error {
+  margin-top: 15px;
+  color: #f44336;
+  text-align: center;
+  font-weight: bold;
+}
+.new-acc-container, a  {
+  text-decoration: none;
+  margin-top: 15px;
+  color: #333;
 }

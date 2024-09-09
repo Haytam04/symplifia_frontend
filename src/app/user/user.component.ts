@@ -25,10 +25,15 @@ export class UserComponent {
   ) {}
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    let localStorageUser = localStorage.getItem('user');
+    if( !localStorageUser ) {
+      this.route.navigate(['/']);
+      return ;
+    }
+    let user = JSON.parse(localStorageUser);
     this.idUser = user.idResident;
     this.loadInvoices();
-    console.log(this.idUser);
+    
   }
   loadInvoices(){
     this.userService.getInvoicesForResidentByYear(this.idUser, new Date().getFullYear()).subscribe((data) => {

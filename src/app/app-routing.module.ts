@@ -7,12 +7,15 @@ import { ResidentsComponent } from './syndic/residents/residents.component';
 import { ExpensesComponent } from './syndic/expenses/expenses.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './authentification/login/login.component';
-
+import { SignUpComponent } from './authentification/sign-up/sign-up.component';
 
 
 const routes: Routes = [
   {
     path: '', component: LoginComponent
+  },
+  {
+    path: 'sign-up', component: SignUpComponent
   },
   { 
     path: 'syndic', 

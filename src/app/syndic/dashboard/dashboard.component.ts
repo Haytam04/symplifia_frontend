@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from './dashboard.service';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,10 +27,16 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService,
               private datePipe: DatePipe,
-              ) {}
+              private router: Router) 
+              {}
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    let localStorageUser = localStorage.getItem('user');
+    if( !localStorageUser ) {
+      this.router.navigate(['/']);
+      return ;
+    }
+    let user = JSON.parse(localStorageUser);
     this.idSyndic = user.idSyndic;
     this.onDateChange();
   }

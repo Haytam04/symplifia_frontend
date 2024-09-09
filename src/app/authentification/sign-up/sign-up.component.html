@@ -1,0 +1,69 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <h1>Sign-Up Form</h1>
+  
+    <!-- Full Name -->
+    <mat-form-field>
+      <input matInput placeholder="Full Name" formControlName="fullName" required>
+      <mat-error *ngIf="signUpForm.get('fullName')?.hasError('required')">Full name is required</mat-error>
+    </mat-form-field>
+  
+    <!-- Phone Number -->
+    <mat-form-field>
+      <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
+      <mat-error *ngIf="signUpForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+    </mat-form-field>
+  
+    <!-- Password -->
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+      <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">Password is required</mat-error>
+    </mat-form-field>
+  
+    <!-- Role Selection -->
+    <mat-radio-group formControlName="role">
+      <mat-radio-button value="resident">resident</mat-radio-button>
+      <mat-radio-button value="syndic">syndic</mat-radio-button>
+    </mat-radio-group>
+  
+    <!-- For Resident Role -->
+    <div *ngIf="signUpForm.get('role')?.value === 'resident'">
+      <!-- Select Syndic -->
+      <mat-form-field>
+        <mat-select placeholder="Select Syndic" formControlName="selectedSyndic" (selectionChange)="onSyndicChange($event.value)" >
+          <mat-option *ngFor="let syndic of syndics" [value]="syndic.idSyndic">
+            {{ syndic.fullName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="signUpForm.get('selectedSyndic')?.hasError('required')">Syndic is required</mat-error>
+      </mat-form-field>
+  
+      <!-- Select Building -->
+      <mat-form-field>
+        <mat-select placeholder="Select Building" formControlName="selectedBuilding">
+          <mat-option *ngFor="let building of buildings" [value]="building.idBuilding">
+            {{ building.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="signUpForm.get('selectedBuilding')?.hasError('required')">Building is required</mat-error>
+      </mat-form-field>
+    </div>
+  
+    <!-- For Syndic Role -->
+    <div *ngIf="signUpForm.get('role')?.value === 'syndic'">
+      <!-- Bank Name -->
+      <mat-form-field>
+        <input matInput placeholder="Bank Name" formControlName="bankName" required>
+        <mat-error *ngIf="signUpForm.get('bankName')?.hasError('required')">Bank name is required</mat-error>
+      </mat-form-field>
+  
+      <!-- Bank Account -->
+      <mat-form-field>
+        <input matInput placeholder="Bank Account" formControlName="bankAccount" required>
+        <mat-error *ngIf="signUpForm.get('bankAccount')?.hasError('required')">Bank account is required</mat-error>
+      </mat-form-field>
+    </div>
+  
+    <!-- Submit Button -->
+    <button mat-raised-button type="submit" color="primary">Sign Up</button>
+  </form>
+

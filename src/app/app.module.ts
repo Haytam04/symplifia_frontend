@@ -31,8 +31,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './user/user.component';
 import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.component';
 import {MatRadioModule} from '@angular/material/radio';
-import {  MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './authentification/login/login.component';
+import { SignUpComponent } from './authentification/sign-up/sign-up.component';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { LoginComponent } from './authentification/login/login.component';
     ConfirmPaymentComponent,
     UserComponent,
     PaymentDialogComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
