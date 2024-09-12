@@ -16,7 +16,7 @@ export class ResidentsService {
     return this.http.get<any>(`${this.apiUrl}/${syndicId}?year=${year}`);
   }
 
-  confirmPayment(residentId: number, invoiceMonth: number, invoiceYear: number): Observable<void> {
+  confirmPayment(residentId: number, invoiceMonth: number, invoiceYear: number): Observable<any> {
     const params = new HttpParams()
       .set('residentId', residentId.toString())
       .set('invoiceMonth', (invoiceMonth).toString()) 

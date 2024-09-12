@@ -25,3 +25,27 @@ form {
     padding: 5px;
     font-size: 16px;
   }
+  .mat-mdc-radio-button.mat-accent {
+    --mdc-radio-selected-hover-icon-color: #351fae;
+    --mdc-radio-selected-icon-color: #3636d6;
+    --mdc-radio-selected-pressed-icon-color: #351fae;
+    --mat-radio-ripple-color: #494545;
+    --mat-radio-checked-ripple-color: #ffffff;
+}
+.mat-mdc-radio-group {
+    margin-bottom: 10px;
+}
+.error {
+  margin-top: 15px;
+  color: #f44336;
+  text-align: center;
+  font-weight: bold;
+}
+.new-acc-container, a  {
+  text-align: center;
+  text-decoration: none;
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}

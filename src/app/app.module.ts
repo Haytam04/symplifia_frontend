@@ -1,4 +1,4 @@
-import { NgModule, Output } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +19,7 @@ import { BuildingFormComponent } from './syndic/buildings/building-form/building
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExpenseFormComponent } from './syndic/expenses/expense-form/expense-form.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { DeleteDialogComponent } from './syndic/expenses/delete-dialog/delete-dialog.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -30,8 +30,7 @@ import { ConfirmPaymentComponent } from './syndic/residents/confirm-payment/conf
 import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './user/user.component';
 import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.component';
-import {MatRadioModule} from '@angular/material/radio';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
 import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
 
@@ -73,10 +72,9 @@ import { SignUpComponent } from './authentification/sign-up/sign-up.component';
     MatSelectModule,
     MatSortModule,
     MatIconModule,
-    MatRadioModule,
-    MatSnackBarModule
+    MatRadioModule
   ],
-  providers: [BuildingService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

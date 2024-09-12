@@ -12,7 +12,7 @@ import { passwordValidator } from 'src/app/validators/passwordValidator';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
-  loginFailed?: boolean ;
+  loginFailed?: boolean;
 
   constructor(private authService: AuthService,
              private router: Router,
@@ -22,7 +22,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      phoneNumber: [ , [emptyValidator(), Validators.maxLength(10), Validators.pattern('^[0-9]*$')]],
+      phoneNumber: ['' , [emptyValidator(), Validators.pattern('^[0-9]*$')]],
       password: ['', [emptyValidator(), Validators.minLength(8), Validators.maxLength(200), passwordValidator()]],
       role: ['syndic', emptyValidator()]
     });

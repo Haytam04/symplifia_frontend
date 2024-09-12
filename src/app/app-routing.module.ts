@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'user', component: UserComponent
-  }  
+  }
+    
 ]; 
 
 @NgModule({

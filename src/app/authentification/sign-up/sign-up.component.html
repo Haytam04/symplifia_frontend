@@ -1,6 +1,11 @@
+
+  <div class="new-acc-container">
+    <a [routerLink]="['/']">Login</a>
+  </div>
+
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <h1>Sign-Up Form</h1>
-  
+
     <!-- Full Name -->
     <mat-form-field>
       <input matInput placeholder="Full Name" formControlName="fullName" required>
@@ -21,8 +26,8 @@
   
     <!-- Role Selection -->
     <mat-radio-group formControlName="role">
-      <mat-radio-button value="resident">resident</mat-radio-button>
-      <mat-radio-button value="syndic">syndic</mat-radio-button>
+      <mat-radio-button (click)="onRoleChanged('resident')" value="resident">resident</mat-radio-button>
+      <mat-radio-button (click)="onRoleChanged('syndic')" value="syndic">syndic</mat-radio-button>
     </mat-radio-group>
   
     <!-- For Resident Role -->
@@ -52,18 +57,19 @@
     <div *ngIf="signUpForm.get('role')?.value === 'syndic'">
       <!-- Bank Name -->
       <mat-form-field>
-        <input matInput placeholder="Bank Name" formControlName="bankName" required>
+        <input matInput placeholder="Bank Name" formControlName="bankName">
         <mat-error *ngIf="signUpForm.get('bankName')?.hasError('required')">Bank name is required</mat-error>
       </mat-form-field>
   
       <!-- Bank Account -->
       <mat-form-field>
-        <input matInput placeholder="Bank Account" formControlName="bankAccount" required>
+        <input matInput placeholder="Bank Account" formControlName="bankAccount">
         <mat-error *ngIf="signUpForm.get('bankAccount')?.hasError('required')">Bank account is required</mat-error>
       </mat-form-field>
     </div>
-  
-    <!-- Submit Button -->
     <button mat-raised-button type="submit" color="primary">Sign Up</button>
+    <div *ngIf="signupFailed" class="error">
+      this user have already an account.
+    </div>
   </form>
 

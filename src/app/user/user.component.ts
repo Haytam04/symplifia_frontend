@@ -26,12 +26,12 @@ export class UserComponent {
 
   ngOnInit(): void {
     let localStorageUser = localStorage.getItem('user');
-    if( !localStorageUser ) {
-      this.route.navigate(['/']);
-      return ;
-    }
-    let user = JSON.parse(localStorageUser);
-    this.idUser = user.idResident;
+     if( !localStorageUser ) {
+       this.route.navigate(['/']);
+       return ;
+     }
+     let user = JSON.parse(localStorageUser);
+     this.idUser = user.idResident;
     this.loadInvoices();
     
   }
