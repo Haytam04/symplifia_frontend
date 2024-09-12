@@ -2,7 +2,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 400px;
-    padding: 20px;
+    padding: 10px 25px;
     margin: auto;
     margin-top: 5px;
     background-color: #f9f9f9;
@@ -12,12 +12,12 @@ form {
   
   h2 {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   
   mat-form-field {
     width: 100%;
-    margin-bottom: 5px;
+    
   }
   
   button {
@@ -25,6 +25,10 @@ form {
     padding: 5px;
     font-size: 16px;
   }
+  .mat-mdc-radio-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
   .mat-mdc-radio-button.mat-accent {
     --mdc-radio-selected-hover-icon-color: #351fae;
     --mdc-radio-selected-icon-color: #3636d6;
@@ -32,9 +36,8 @@ form {
     --mat-radio-ripple-color: #494545;
     --mat-radio-checked-ripple-color: #ffffff;
 }
-.mat-mdc-radio-group {
-    margin-bottom: 10px;
-}
+
+
 .error {
   margin-top: 15px;
   color: #f44336;
@@ -42,10 +45,7 @@ form {
   font-weight: bold;
 }
 .new-acc-container, a  {
-  text-align: center;
   text-decoration: none;
-  margin-top: 15px;
-  font-size: 1rem;
-  font-weight: bold;
+  margin-top: 10px;
   color: #333;
 }

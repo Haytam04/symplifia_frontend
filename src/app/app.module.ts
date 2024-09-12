@@ -33,6 +33,7 @@ import { PaymentDialogComponent } from './user/payment-dialog/payment-dialog.com
 import { MatRadioModule } from '@angular/material/radio';
 import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { SignUpComponent } from './authentification/sign-up/sign-up.component';
     UserComponent,
     PaymentDialogComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

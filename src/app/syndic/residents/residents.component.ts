@@ -37,9 +37,9 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
   }
 
   ngOnInit():void {
-    let localStorageUser = localStorage.getItem('user');
+    let localStorageUser = localStorage.getItem('syndic');
     if( !localStorageUser ) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/not-found']);
       return ;
     }
     let user = JSON.parse(localStorageUser);

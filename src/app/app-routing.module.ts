@@ -8,6 +8,7 @@ import { ExpensesComponent } from './syndic/expenses/expenses.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -17,19 +18,25 @@ const routes: Routes = [
   {
     path: 'sign-up', component: SignUpComponent
   },
+  {
+    path: 'not-found', component: NotFoundComponent
+  },
   { 
     path: 'syndic', 
     component: SyndicSpaceComponent, 
     children: [
-      { path: '', redirectTo:'dashboard' ,pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'building', component: BuildingsComponent },
+      { path: '', redirectTo:'dashboard' ,pathMatch: 'full'},
+      { path: 'dashboard', component: DashboardComponent},
+      { path: 'building', component: BuildingsComponent},
       { path: 'residents', component: ResidentsComponent},
-      { path: 'expenses', component: ExpensesComponent} 
+      { path: 'expenses', component: ExpensesComponent}
     ]
   },
   {
     path: 'user', component: UserComponent
+  },
+  {
+    path: '**', redirectTo: 'not-found'  // routes li makayninch kay redirectiw l 404
   }
     
 ]; 

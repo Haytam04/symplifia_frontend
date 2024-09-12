@@ -36,9 +36,9 @@ export class ExpensesComponent implements OnInit, AfterViewInit  {
               private router: Router) {}
 
   ngOnInit(): void {
-    let localStorageUser = localStorage.getItem('user');
+    let localStorageUser = localStorage.getItem('syndic');
     if( !localStorageUser ) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/not-found']);
       return ;
     }
     let user = JSON.parse(localStorageUser);

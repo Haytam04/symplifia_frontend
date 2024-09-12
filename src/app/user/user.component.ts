@@ -25,9 +25,9 @@ export class UserComponent {
   ) {}
 
   ngOnInit(): void {
-    let localStorageUser = localStorage.getItem('user');
+    let localStorageUser = localStorage.getItem('resident');
      if( !localStorageUser ) {
-       this.route.navigate(['/']);
+      this.route.navigate(['/not-found']);
        return ;
      }
      let user = JSON.parse(localStorageUser);
@@ -85,7 +85,7 @@ export class UserComponent {
     });
   }
   Logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('resident');
     this.route.navigate(['/']);
   }
 }

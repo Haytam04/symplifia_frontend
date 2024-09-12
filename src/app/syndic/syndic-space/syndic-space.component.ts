@@ -16,7 +16,7 @@ export class SyndicSpaceComponent{
     this.sidebarOpen = !this.sidebarOpen;
   }
   Logout(){
-    localStorage.removeItem('user');
+    localStorage.removeItem('syndic');
     this.route.navigate(['/']);
   }
 }

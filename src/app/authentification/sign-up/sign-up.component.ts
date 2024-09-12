@@ -16,12 +16,14 @@ export class SignUpComponent {
   syndics: any[] = [];
   buildings: any[] = [];
   signupFailed?: boolean;
+
   DEFAULT_DATA_FORM_VALUE = {
     fullName: '',
     phoneNumber: '',
     password: '',
     role: 'resident',
   };
+
   constructor(
             private fb: FormBuilder,
             private apiService: FormServiceService,
@@ -55,7 +57,7 @@ export class SignUpComponent {
     
     this.signUpForm = this.fb.group({
       fullName: [data.fullName, emptyValidator()],
-      phoneNumber: [data.phoneNumber,  Validators.pattern('^[0-9]*$')],
+      phoneNumber: [data.phoneNumber,  [emptyValidator() ,Validators.pattern('^[0-9]*$'), Validators.minLength(10), Validators.maxLength(10)]],
       password: [data.password, [emptyValidator(), Validators.minLength(8), passwordValidator(), Validators.maxLength(200)]],
       role: [data.role, emptyValidator()], 
       selectedSyndic: [...residentValidation],
@@ -89,8 +91,7 @@ export class SignUpComponent {
    
   }
 
-
-  // Fetch buildings when a syndic is selected
+  // kat fetchi buildings mli ka selectioner syndic
   onSyndicChange(syndicId: any) {
     this.apiService.getBuildings(syndicId).subscribe(data => {
       this.buildings = data;
