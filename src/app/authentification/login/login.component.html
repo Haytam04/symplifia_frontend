@@ -18,13 +18,6 @@
       <mat-error *ngIf="loginForm.get('password')?.hasError('invalidPassword')">Password must contain at least letters and numbers</mat-error>
     </mat-form-field>
   
-    <mat-form-field>
-      <mat-select placeholder="Select Role" formControlName="role" name="role" required>
-        <mat-option value="syndic">syndic</mat-option>
-        <mat-option value="resident">resident</mat-option>
-      </mat-select>
-      <mat-error *ngIf="loginForm.get('role')?.hasError('required')">Role is required</mat-error>
-    </mat-form-field>
   
     <button mat-raised-button color="primary" type="submit">
       Login

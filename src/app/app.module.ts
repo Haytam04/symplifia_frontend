@@ -35,7 +35,6 @@ import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

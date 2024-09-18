@@ -43,7 +43,7 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
       return ;
     }
     let user = JSON.parse(localStorageUser);
-    this.idSyndic = user.idSyndic;
+    this.idSyndic = user.id;
     this.fetchResidents(this.idSyndic, this.selectedYear);
   }
   ngAfterViewInit() {

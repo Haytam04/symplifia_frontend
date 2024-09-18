@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { UserService } from './user.service';
 import { Invoice } from '../models/Invoice';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentDetails } from '../models/PaymentDetails';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
-import { AuthService } from '../authentification/auth.service';
 
 
 @Component({
@@ -25,15 +24,20 @@ export class UserComponent {
   ) {}
 
   ngOnInit(): void {
-    let localStorageUser = localStorage.getItem('resident');
-     if( !localStorageUser ) {
-      this.route.navigate(['/not-found']);
-       return ;
-     }
-     let user = JSON.parse(localStorageUser);
-     this.idUser = user.idResident;
-    this.loadInvoices();
-    
+    let localStorageSyndic = localStorage.getItem('syndic');
+    let localStorageResident = localStorage.getItem('resident');
+
+    if( localStorageSyndic ) {
+      this.route.navigate(['/syndic']);  
+      return ;
+    } else if(localStorageResident) {
+      this.route.navigate(['/user']);
+      let user = JSON.parse(localStorageResident);
+      this.idUser = user.id;
+      this.loadInvoices();
+      return ;
+    }
+
   }
   loadInvoices(){
     this.userService.getInvoicesForResidentByYear(this.idUser, new Date().getFullYear()).subscribe((data) => {

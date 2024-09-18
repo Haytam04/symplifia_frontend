@@ -33,7 +33,7 @@ export class BuildingsComponent implements OnInit, AfterViewInit {
       return ;
     }
     let user = JSON.parse(localStorageUser);
-    this.idSyndic = user.idSyndic;
+    this.idSyndic = user.id;
     this.showBuildings();
   }
   ngAfterViewInit() {

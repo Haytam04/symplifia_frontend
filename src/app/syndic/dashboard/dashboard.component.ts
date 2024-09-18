@@ -3,7 +3,7 @@ import { DashboardService } from './dashboard.service';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { NotFoundComponent } from 'src/app/not-found/not-found.component';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -34,11 +34,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     let localStorageUser = localStorage.getItem('syndic');
     if( !localStorageUser ) {
-      this.router.navigate(['/not-found']);  // Redirect to 404 page if user is not logged in.  // Assuming AuthService is a service that provides access to user data.  // Please replace 'not-found' with the actual route name for your 404 page.  // Also, replace 'idSyndic' with the actual property name for your syndic ID.  // Make sure to handle the case where the user is not logged
+      this.router.navigate(['/not-found']);  // ymchi l 404 page yla makan user m authentifier.  
       return ;
     }
     let user = JSON.parse(localStorageUser);
-    this.idSyndic = user.idSyndic;
+    this.idSyndic = user.id;
     this.onDateChange();
   }
 

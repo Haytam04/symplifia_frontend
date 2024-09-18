@@ -5,6 +5,8 @@ import { AuthService } from '../auth.service';
 import { emptyValidator } from 'src/app/validators/emptyValidator';
 import { passwordValidator } from 'src/app/validators/passwordValidator';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js'; 
+
 
 @Component({
   selector: 'app-sign-up',
@@ -16,6 +18,7 @@ export class SignUpComponent {
   syndics: any[] = [];
   buildings: any[] = [];
   signupFailed?: boolean;
+  phoneExist?: boolean;
 
   DEFAULT_DATA_FORM_VALUE = {
     fullName: '',
@@ -32,8 +35,18 @@ export class SignUpComponent {
             ) {}
 
   ngOnInit() {
-
     this.initForm(this.DEFAULT_DATA_FORM_VALUE);
+
+    let localStorageSyndic = localStorage.getItem('syndic');
+    let localStorageResident = localStorage.getItem('resident');
+
+    if( localStorageSyndic ) {
+      this.router.navigate(['/syndic']);  
+      return ;
+    } else if(localStorageResident) {
+      this.router.navigate(['/user']);  
+      return ;
+    }
     
     // kan fetche les syndics fl first render dyal page
     this.apiService.getSyndics().subscribe(data => {
@@ -51,14 +64,11 @@ export class SignUpComponent {
     }else{
       syndicValidation.push(Validators.required);
     }
-
-    console.log("resident validation",residentValidation);
-    console.log("syndic validation",syndicValidation);
     
     this.signUpForm = this.fb.group({
       fullName: [data.fullName, emptyValidator()],
       phoneNumber: [data.phoneNumber,  [emptyValidator() ,Validators.pattern('^[0-9]*$'), Validators.minLength(10), Validators.maxLength(10)]],
-      password: [data.password, [emptyValidator(), Validators.minLength(8), passwordValidator(), Validators.maxLength(200)]],
+      password: [data.password, [emptyValidator(), Validators.minLength(8), passwordValidator(), Validators.maxLength(255)]],
       role: [data.role, emptyValidator()], 
       selectedSyndic: [...residentValidation],
       selectedBuilding: [...residentValidation],
@@ -87,9 +97,8 @@ export class SignUpComponent {
     }else {
       this.signUpForm.value.bankAccount = '';
       this.signUpForm.value.bankName = '';
+      }
     }
-   
-  }
 
   // kat fetchi buildings mli ka selectioner syndic
   onSyndicChange(syndicId: any) {
@@ -100,49 +109,62 @@ export class SignUpComponent {
 
   // Handle form submission
   onSubmit() {
-    console.log("submit"+this.signUpForm.valid);
     
     if (this.signUpForm.valid) {
       let formData = this.signUpForm.value;
-      if (formData.role === 'syndic') {
+      
+      const encryptedPassword = CryptoJS.SHA256(formData.password).toString();
 
-        let newSyndic = {
-          fullName: formData.fullName,
-          phoneNumber: formData.phoneNumber,
-          bankAccount: formData.bankAccount,
-          bankName: formData.bankName,
-          password: formData.password,
-        };
-        this.SignService.Signup(newSyndic, formData.role).subscribe(
-          response => {
-            console.log('Syndic created successfully',response);
-            localStorage.setItem('user', JSON.stringify(response));
-            this.router.navigate(['syndic']);
-          },
-          error => {
-            console.error('Error creating syndic:', error);
-            this.signupFailed = true;
-          }
-        );
-      }else if (formData.role === 'resident'){
-          let newResident = {
-            fullName: formData.fullName,
-            phoneNumber: formData.phoneNumber,
-            password: formData.password,
-            building: { idBuilding: formData.selectedBuilding }
-          };
-          this.SignService.Signup(newResident, formData.role).subscribe(
-            response => {
-              console.log('Resident created successfully',response);
-              localStorage.setItem('user', JSON.stringify(response));
-              this.router.navigate(['user']);
-            },
-            error => {
-              console.error('Error creating resident:', error);
-              this.signupFailed = true;
+      this.SignService.checkPhoneNumberExists(formData.phoneNumber).subscribe(
+        (exists) => {
+          if (exists) {
+            this.phoneExist = true;
+          } else {
+            // Proceed with registration
+            if (formData.role === 'syndic') {
+              let newSyndic = {
+                fullName: formData.fullName,
+                phoneNumber: formData.phoneNumber,
+                password: encryptedPassword,
+                bankName: formData.bankName,
+                bankAccount: formData.bankAccount,
+                role: formData.role
+              };
+              this.SignService.Signup(newSyndic, newSyndic.role).subscribe(response => {
+                localStorage.setItem('syndic', JSON.stringify({
+                  id: response.idSyndic,
+                  role: response.role
+                }));
+                this.router.navigate(['/syndic']);
+              }, error => {
+                this.signupFailed = true;
+              });
+            } else if (formData.role === 'resident') {
+              let newResident = {
+                fullName: formData.fullName,
+                phoneNumber: formData.phoneNumber,
+                password: encryptedPassword,
+                building: { idBuilding: formData.selectedBuilding },
+                role: formData.role
+              };
+              this.SignService.Signup(newResident, newResident.role).subscribe(response => {
+                localStorage.setItem('resident', JSON.stringify({
+                  id: response.idResident,
+                  role: response.role
+                }));
+                this.router.navigate(['/user']);
+              }, error => {
+                this.signupFailed = true;
+              });
             }
-          );
-      }
+          }
+        },
+        error => {
+          console.error(error);
+          this.signupFailed = true;
+        }
+      );
     }
+      
   }
 }

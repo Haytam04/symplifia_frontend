@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emptyValidator } from 'src/app/validators/emptyValidator';
 import { passwordValidator } from 'src/app/validators/passwordValidator';
+import * as CryptoJS from 'crypto-js'; // Import crypto-js
 
 @Component({
   selector: 'app-login',
@@ -25,44 +26,40 @@ export class LoginComponent {
     let localStorageResident = localStorage.getItem('resident');
 
     if( localStorageSyndic ) {
-      this.router.navigate(['/syndic']);  // Redirect to 404 page if user is not logged in.  // Assuming AuthService is a service that provides access to user data.  // Please replace 'not-found' with the actual route name for your 404 page.  // Also, replace 'idSyndic' with the actual property name for your syndic ID.  // Make sure to handle the case where the user is not logged
+      this.router.navigate(['/syndic']);  
       return ;
     } else if(localStorageResident) {
-      this.router.navigate(['/user']);  // Redirect to 404 page if user is not logged in.  // Assuming AuthService is a service that provides access to user data.  // Please replace 'not-found' with the actual route name for your 404 page.  // Also, replace 'idSyndic' with the actual property name for your syndic ID.  // Make sure to handle the case where the user is not logged
+      this.router.navigate(['/user']);  
       return ;
     }
 
     this.loginForm = this.fb.group({
       phoneNumber: ['' , [emptyValidator(), Validators.pattern('^[0-9]*$'), Validators.minLength(10), Validators.maxLength(10)]],
-      password: ['', [emptyValidator(), Validators.minLength(8), Validators.maxLength(200), passwordValidator()]],
-      role: ['syndic', emptyValidator()]
+      password: ['', [emptyValidator(), Validators.minLength(8), Validators.maxLength(255), passwordValidator()]],
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
-      const { phoneNumber, password, role } = this.loginForm.value;
 
-    this.authService.login(phoneNumber, password, role).subscribe(
-      (response) => {
-        if (response.authenticated) {
+      const { phoneNumber, password} = this.loginForm.value;
+      const encryptedPassword = CryptoJS.SHA256(password).toString();
 
-          if (role === 'syndic') {
-            localStorage.setItem('syndic', JSON.stringify(response.user));
-            this.router.navigate(['syndic']);
-          } else if (role === 'resident') {
-            localStorage.setItem('resident', JSON.stringify(response.user));
-            this.router.navigate(['user']);
+      this.authService.login(phoneNumber, encryptedPassword).subscribe(
+        (response) => {
+          if (response.role === 'syndic') {
+            localStorage.setItem('syndic', JSON.stringify(response));
+            this.router.navigate(['/syndic']);
+          } else if (response.role === 'resident') {
+            localStorage.setItem('resident', JSON.stringify(response));
+            this.router.navigate(['/user']);
           }
-        } else {
+        },
+        (error) => {
           this.loginFailed = true;
+          console.error('Login error', error);
         }
-      },
-      (error) => {
-        this.loginFailed = true;
-        console.error('Login error', error);
-      }
-    );
+      );
+    }
   }
-}
 }

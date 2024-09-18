@@ -12,14 +12,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(phoneNumber: string, password: string, role: string): Observable<any> {
+  login(phoneNumber: string, password: string): Observable<any> {
 
-    return this.http.post(this.Url + role +'-login', { phoneNumber, password });
+    return this.http.post(this.Url + 'login', { phoneNumber, password });
 
   }
 
   Signup(user: any, role: string): Observable<any> {
-    return this.http.post(this.Url +'post-'+role, user);
+    return this.http.post(this.Url +'signup/'+role, user);
+  }
+
+  checkPhoneNumberExists(phoneNumber: string): Observable<any> {
+    return this.http.get<boolean>(this.Url +'check-phone/'+phoneNumber);
   }
 
 
