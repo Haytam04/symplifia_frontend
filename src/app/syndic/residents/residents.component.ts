@@ -37,14 +37,21 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
   }
 
   ngOnInit():void {
-    let localStorageUser = localStorage.getItem('syndic');
-    if( !localStorageUser ) {
-      this.router.navigate(['/not-found']);
+    let localStorageSyndic = localStorage.getItem('syndic');
+    let localStorageResident = localStorage.getItem('resident');
+
+    if( localStorageSyndic ) {
+      let user = JSON.parse(localStorageSyndic);
+      this.idSyndic = user.id;
+      this.fetchResidents(this.idSyndic, this.selectedYear);
+      return ;
+    } else if( localStorageResident ) {
+      this.router.navigate(['/user']);  
+      return ;
+    }else {
+      this.router.navigate(['/login']);
       return ;
     }
-    let user = JSON.parse(localStorageUser);
-    this.idSyndic = user.id;
-    this.fetchResidents(this.idSyndic, this.selectedYear);
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -62,12 +69,6 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
       this.dataSource.data = this.residents;
     });
   }
-  
-  // onYearChange(year: number): void {
-  //   const idSyndic = this.activatedRoute.parent?.snapshot.params['idSyndic']; 
-  //   this.selectedYear = year;
-  //   this.fetchResidents(idSyndic, this.selectedYear);
-  // }
   
   getPaymentStatus(invoices: Invoice[]): string {
     const paymentStatuses: string[] = [];

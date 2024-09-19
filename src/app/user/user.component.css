@@ -44,17 +44,21 @@ h1 {
   font-weight: 500;
   font-size: 1.8rem;
 }
+.dialog-container {
+  width: 700px;
+  margin: 0 auto; /* Keeps the dialog responsive vertically */
+  overflow-y: auto;
+}
 
 .month-cards { 
-  width: 700px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 15px;
-  margin: 20px auto  1px;
+  margin: 5px auto  1px;
   background-color: #d6d6d6;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .month-card {
@@ -70,7 +74,6 @@ h1 {
   align-items: center;
   border: 1.5px solid #000;
 }
-
 .month-card.green {
   background-color: #58df78;
 }
@@ -98,4 +101,15 @@ h1 {
 
 .pay-button:hover {
   background-color: #0056b3;
+}
+@media (max-width: 768px)  {
+  .dialog-container {
+    max-height: calc(100vh - 100px);
+    width: 400px;
+    margin: auto; /* Keeps the dialog responsive vertically */
+    overflow-y: auto;
+  }
+  .month-cards { 
+    background-color: #ffffff;
+  }
 }

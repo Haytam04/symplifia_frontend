@@ -20,14 +20,6 @@ export class ExpensesComponent implements OnInit, AfterViewInit  {
   dataSource: MatTableDataSource<Expense> = new MatTableDataSource<Expense>();
   displayedColumns: string[] = ['name', 'cost', 'description', 'date', 'actions'];
 
-  // minDate: Date = new Date(2024, 0, 1);
-  // maxDate: Date = new Date();
-
-  // currentYear:number = new Date().getFullYear();
-  // currentMonth:number = new Date().getMonth();
-  // startDate: Date = new Date(this.currentYear, 0, 1);
-  // endDate: Date = new Date(); 
-
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -36,14 +28,21 @@ export class ExpensesComponent implements OnInit, AfterViewInit  {
               private router: Router) {}
 
   ngOnInit(): void {
-    let localStorageUser = localStorage.getItem('syndic');
-    if( !localStorageUser ) {
-      this.router.navigate(['/not-found']);
+    let localStorageSyndic = localStorage.getItem('syndic');
+    let localStorageResident = localStorage.getItem('resident');
+
+    if( localStorageSyndic ) {
+      let user = JSON.parse(localStorageSyndic);
+      this.idSyndic = user.id;
+      this.showExpenses(); 
+      return ;
+    } else if( localStorageResident ) {
+      this.router.navigate(['/user']);  
+      return ;
+    }else {
+      this.router.navigate(['/login']);
       return ;
     }
-    let user = JSON.parse(localStorageUser);
-    this.idSyndic = user.id;
-    this.showExpenses();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -67,18 +66,6 @@ export class ExpensesComponent implements OnInit, AfterViewInit  {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-//   applyDateFilter() {
-//     const start = this.startDate ? new Date(this.startDate).setHours(0, 0, 0, 0) : null;
-//     const end = this.endDate ? new Date(this.endDate).setHours(0, 0, 0, 0) : null;
-
-//     const filteredData = this.expenses.filter(expense => {
-//     const expenseDate = new Date(expense.date).setHours(0, 0, 0, 0);
-//     return (!start || expenseDate >= start) && (!end || expenseDate <= end);
-//   });
-
-//   this.dataSource.data = filteredData;
-// }
-  
   
   openCreateExpenseDialog(): void {
     const dialogRef = this.dialog.open(ExpenseFormComponent, {

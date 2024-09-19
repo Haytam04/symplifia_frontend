@@ -2,10 +2,11 @@
     <h1 class="logo">SYMPLIFIA</h1>
     <div class="navbar-links">
         <a [routerLink]="['/user', idUser]" routerLinkActive="active" class="nav-link">Dashboard</a>
-        <a class="nav-link" (click)="Logout()" >Logout</a>
+        <a class="nav-link" (click)="Logout()">Logout</a>
     </div>
 </div>
  <h1>Months & Payment status</h1>
+ <div class="dialog-container">
   <div class="month-cards">
     <div *ngFor="let month of months" [ngClass]="getMonthCardClass(month)" class="month-card">
       <p>{{ month }}</p>
@@ -15,3 +16,4 @@
       >Pay</button>
     </div>
   </div>
+</div>

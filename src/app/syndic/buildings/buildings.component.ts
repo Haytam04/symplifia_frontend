@@ -27,14 +27,22 @@ export class BuildingsComponent implements OnInit, AfterViewInit {
               private router: Router) {}
  
   ngOnInit(): void {
-    let localStorageUser = localStorage.getItem('syndic');
-    if( !localStorageUser ) {
-      this.router.navigate(['/not-found']);
+    let localStorageSyndic = localStorage.getItem('syndic');
+    let localStorageResident = localStorage.getItem('resident');
+
+    if( localStorageSyndic ) {
+      let user = JSON.parse(localStorageSyndic);
+      this.idSyndic = user.id;
+      this.showBuildings();
+      return ;
+    } else if( localStorageResident ) {
+      this.router.navigate(['/user']);  
+      return ;
+    }else {
+      this.router.navigate(['/login']);
       return ;
     }
-    let user = JSON.parse(localStorageUser);
-    this.idSyndic = user.id;
-    this.showBuildings();
+
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

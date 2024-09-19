@@ -34,6 +34,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatSelectModule,
     MatSortModule,
     MatIconModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

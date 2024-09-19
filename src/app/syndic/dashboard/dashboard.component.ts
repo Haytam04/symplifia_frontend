@@ -32,14 +32,22 @@ export class DashboardComponent implements OnInit {
               {}
 
   ngOnInit(): void {
-    let localStorageUser = localStorage.getItem('syndic');
-    if( !localStorageUser ) {
-      this.router.navigate(['/not-found']);  // ymchi l 404 page yla makan user m authentifier.  
+    let localStorageSyndic = localStorage.getItem('syndic');
+    let localStorageResident = localStorage.getItem('resident');
+
+    if( localStorageSyndic ) {
+      let user = JSON.parse(localStorageSyndic);
+      this.idSyndic = user.id;
+      this.onDateChange();  
+      return ;
+    } else if( localStorageResident ) {
+      this.router.navigate(['/user']);  
+      return ;
+    }else {
+      this.router.navigate(['/login']);
       return ;
     }
-    let user = JSON.parse(localStorageUser);
-    this.idSyndic = user.id;
-    this.onDateChange();
+    
   }
 
   onDateChange(): void {

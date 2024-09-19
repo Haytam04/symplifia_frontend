@@ -1,7 +1,7 @@
 form {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    max-width: 400px;
     padding: 10px 25px;
     margin: auto;
     margin-top: 10px;

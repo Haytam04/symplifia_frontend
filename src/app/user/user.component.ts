@@ -36,6 +36,9 @@ export class UserComponent {
       this.idUser = user.id;
       this.loadInvoices();
       return ;
+    }else {
+      this.route.navigate(['/login']);
+      return ;
     }
 
   }

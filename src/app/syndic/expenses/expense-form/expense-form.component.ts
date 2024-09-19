@@ -4,6 +4,7 @@ import { ExpenseService } from '../expense.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Expense } from 'src/app/models/Expense';
 import { emptyValidator } from 'src/app/validators/emptyValidator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-expense-form',
@@ -20,6 +21,7 @@ export class ExpenseFormComponent {
     private fb: FormBuilder,
     private expensesService: ExpenseService,
     private dialogRef: MatDialogRef<ExpenseFormComponent>,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: { expense?: Expense, isUpdate?: boolean, idSyndic: string }
   ) {}
 
@@ -39,15 +41,29 @@ export class ExpenseFormComponent {
 
       if (this.isUpdate && this.data.expense) {
         this.expensesService.updateExpense(this.data.idSyndic, this.data.expense.idExpense, expense).subscribe(
-          () => this.dialogRef.close(true),
+          () => {
+            this.dialogRef.close(true),
+            this.showSnackbar('Expense updated successfully')
+          },
           (error) => console.error('Error updating expense:', error)
         );
       } else {
         this.expensesService.addExpense(this.data.idSyndic, expense).subscribe(
-          () => this.dialogRef.close(true),
+          () => {
+            this.dialogRef.close(true),
+            this.showSnackbar('Expense added successfully')
+          },
           (error) => console.error('Error creating expense:', error)
         );
       }
     }
+  }
+
+  showSnackbar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 2500, 
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 }

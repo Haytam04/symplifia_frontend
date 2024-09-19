@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from 'src/app/models/Invoice';
 import { PaymentService } from '../payment/payment.service';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -22,8 +22,9 @@ export class PaymentDialogComponent {
       public dialogRef: MatDialogRef<PaymentDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private route: ActivatedRoute,
-      private paymentService: PaymentService
-        ) 
+      private paymentService: PaymentService,
+      private snackBar: MatSnackBar,
+      ) 
   {}
 
 
@@ -53,6 +54,7 @@ export class PaymentDialogComponent {
         console.log('Invoice created successfully', response);
         this.dialogRef.close(true);
         this.paymentConfirmed.emit();
+        this.showSnackbar('Payment sent, Waiting for syndic confirmation');
       },
       (error) => {
         console.error('Error creating invoice', error);
@@ -60,6 +62,14 @@ export class PaymentDialogComponent {
       }
     );
 
+  }
+
+  showSnackbar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 2500, 
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 
   selectPaymentMethod(method: any) {

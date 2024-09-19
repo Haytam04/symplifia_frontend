@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BuildingService } from '../building.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Building } from 'src/app/models/Building';
 import { emptyValidator } from 'src/app/validators/emptyValidator';
 
@@ -18,6 +19,7 @@ export class BuildingFormComponent {
     private fb: FormBuilder,
     private buildingService: BuildingService,
     private dialogRef: MatDialogRef<BuildingFormComponent>,
+    private snackBar: MatSnackBar,  // injecting MatSnackBar service to display notifications in the UI.
     @Inject(MAT_DIALOG_DATA) public data : { building: Building, isUpdate: boolean, idSyndic: string }
   ) {
     this.idSyndic = data.idSyndic;
@@ -38,17 +40,31 @@ export class BuildingFormComponent {
       if (this.data.isUpdate) {
         this.buildingService.updateBuilding(this.data.idSyndic, this.data.building.idBuilding, formValues)
           .subscribe({
-            next: () => this.dialogRef.close(true),
+            next: () => {
+            this.dialogRef.close(true),
+            this.showSnackbar('Building updated successfully');
+            },
             error: (err) => console.error('Error updating building:', err)
           });
       } else {
         this.buildingService.addBuildings(this.data.idSyndic, formValues)
           .subscribe({
-            next: () => this.dialogRef.close(true),
+            next: () => { 
+            this.dialogRef.close(true),
+            this.showSnackbar('Building created successfully');
+            },
             error: (err) => console.error('Error creating building:', err)
           });
       }
     }
+  }
+
+  showSnackbar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 2500, 
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 
 }

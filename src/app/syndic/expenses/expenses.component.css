@@ -24,7 +24,9 @@ mat-form-field {
   display: flex;
   justify-content: center;
 }
-
+.mdc-button {
+  margin-right: 5px;
+}
 
 @media (max-width: 768px) {
   .filter-container {
