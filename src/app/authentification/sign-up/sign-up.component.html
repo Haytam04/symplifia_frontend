@@ -72,7 +72,8 @@
     </div>
     <button mat-raised-button type="submit" color="primary">Sign Up</button>
     <div class="new-acc-container">
-      <a [routerLink]="['/']">if you are registered, Login now</a>
+      <a>if you are already registered.</a>
+      <a [routerLink]="['/']">Login now</a>
     </div>
     <div *ngIf="signupFailed" class="error">
       this user have already an account.

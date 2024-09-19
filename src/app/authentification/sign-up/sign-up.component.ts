@@ -57,7 +57,6 @@ export class SignUpComponent {
   initForm(data: any){
     let residentValidation: [any] = [''];
     let syndicValidation: [any] = [''];
-    console.log("role",data.role);
     
     if(this.isResident(data.role)){
       residentValidation.push(Validators.required);
@@ -75,7 +74,6 @@ export class SignUpComponent {
       bankName: [...syndicValidation],
       bankAccount: [...syndicValidation],
     });
-    console.log("form",this.signUpForm);
     
   }
   isResident(role: string) {
@@ -87,7 +85,6 @@ export class SignUpComponent {
 
 
   onRoleChanged(role: string){
-    console.log("onchange role ",this.signUpForm.value.role);
     
     this.signUpForm.value.role = role;
     this.initForm(this.signUpForm.value);
@@ -100,14 +97,12 @@ export class SignUpComponent {
       }
     }
 
-  // kat fetchi buildings mli ka selectioner syndic
   onSyndicChange(syndicId: any) {
     this.apiService.getBuildings(syndicId).subscribe(data => {
       this.buildings = data;
     });
   }
 
-  // Handle form submission
   onSubmit() {
     
     if (this.signUpForm.valid) {

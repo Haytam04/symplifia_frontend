@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/app/environments/environments';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormServiceService {
-  private syndicUrl = 'http://localhost:8080/syndics'; // Adjust URL if needed
-  private buildingUrl = 'http://localhost:8080/api/syndics';
+  private syndicUrl = environment.apiUrls.syndics; // Adjust URL if needed
+  private buildingUrl = environment.apiUrls.buildings;
 
   constructor(private http: HttpClient) { }
 

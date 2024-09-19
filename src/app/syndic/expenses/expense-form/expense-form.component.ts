@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExpenseService } from '../expense.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Expense } from 'src/app/models/Expense';
 import { emptyValidator } from 'src/app/validators/emptyValidator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { minCostValidator } from 'src/app/validators/minCostValidator';
 
 @Component({
   selector: 'app-expense-form',
@@ -29,7 +30,7 @@ export class ExpenseFormComponent {
     this.isUpdate = !!this.data.isUpdate;
     this.expenseForm = this.fb.group({
       name: [this.data.expense?.name || '', [ Validators.maxLength(30), emptyValidator()]],
-      cost: [this.data.expense?.cost || '', [ Validators.pattern('^[0-9]*$')]],
+      cost: [this.data.expense?.cost || '', [ Validators.pattern('^[0-9]*$'), minCostValidator(50)]],
       description: [this.data.expense?.description || '', [Validators.maxLength(60), emptyValidator()]],
       date: [this.data.expense?.date || this.maxDate , Validators.required]
     });

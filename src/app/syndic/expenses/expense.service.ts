@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Expense } from 'src/app/models/Expense';
+import { environment } from 'src/app/environments/environments';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class ExpenseService {
 
-  private apiUrl = 'http://localhost:8080/api/syndics/';
+  
+
+  private apiUrl = environment.apiUrls.syndic;
 
   constructor(private http: HttpClient) {}
 

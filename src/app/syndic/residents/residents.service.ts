@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/app/environments/environments';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class ResidentsService {
 
-  private apiUrl = 'http://localhost:8080/api/residents';
-  private apiUrlInvoice = 'http://localhost:8080/api/invoices/confirm-payment';
+  private apiUrl = environment.apiUrls.residents;
+  private apiUrlInvoice = environment.apiUrls.confirmPayment;
 
 
   constructor(private http: HttpClient) { }

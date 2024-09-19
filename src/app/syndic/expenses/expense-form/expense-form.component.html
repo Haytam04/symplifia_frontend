@@ -20,10 +20,13 @@
       <input matInput formControlName="cost" type="number" required>
 
       <mat-error *ngIf="expenseForm.get('cost')?.hasError('required')">
-        Cost is required.
+        Cost is not valid.
       </mat-error>
       <mat-error *ngIf="expenseForm.get('cost')?.hasError('pattern')">
         Cost must be a number.
+      </mat-error>
+      <mat-error *ngIf="expenseForm.get('cost')?.hasError('minCost')">
+        Cost must be greater than 50.
       </mat-error>
       
     </mat-form-field>

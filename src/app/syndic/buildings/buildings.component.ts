@@ -65,7 +65,7 @@ export class BuildingsComponent implements OnInit, AfterViewInit {
   }
   openCreateBuildingDialog(): void {
     const dialogRef = this.dialog.open(BuildingFormComponent, {
-      width: '600px', 
+      width: '500px', 
       data: { idSyndic: this.idSyndic } 
     });
 
@@ -77,7 +77,7 @@ export class BuildingsComponent implements OnInit, AfterViewInit {
   }
   openUpdateDialog(building: Building): void {
     const dialogRef = this.dialog.open(BuildingFormComponent, {
-      width: '600px',
+      width: '500px',
       data: { building: { ...building }, isUpdate: true, idSyndic: this.idSyndic }
     });
 

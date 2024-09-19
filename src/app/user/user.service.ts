@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Invoice } from '../models/Invoice';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environments';
 import { PaymentDetails } from '../models/PaymentDetails';
 
 @Injectable({
@@ -9,8 +10,8 @@ import { PaymentDetails } from '../models/PaymentDetails';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080/api/residents';
-  private apiPayment = 'http://localhost:8080/api/payment/details'
+  private apiUrl = environment.apiUrls.residents;
+  private apiPayment = environment.apiUrls.paymentDetails;
 
   constructor(private http: HttpClient) {}
 

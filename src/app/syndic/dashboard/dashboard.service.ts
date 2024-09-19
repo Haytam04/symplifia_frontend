@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/app/environments/environments';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class DashboardService {
 
-  private apiUrl = 'http://localhost:8080/api/dashboard';
+  private apiUrl = environment.apiUrls.dashboard;
 
   constructor(private http: HttpClient) { }
 

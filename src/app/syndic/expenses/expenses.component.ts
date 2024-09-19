@@ -108,9 +108,6 @@ export class ExpensesComponent implements OnInit, AfterViewInit  {
       }
     });
   }
-  // fetchExpense(): void {
-  //   this.applyDateFilter();
-  // }
-  }
+}
   
 

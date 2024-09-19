@@ -1,6 +1,9 @@
 .dialog-container {
   padding: 24px;
 }
+h2 {
+  text-align: center;
+}
 
 mat-form-field {
   width: 100%;

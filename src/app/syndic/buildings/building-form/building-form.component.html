@@ -24,6 +24,9 @@
           <mat-error *ngIf="buildingForm.get('syndicPrice')?.hasError('pattern')">
             Syndic Price must be a number.
           </mat-error>
+          <mat-error *ngIf="buildingForm.get('syndicPrice')?.hasError('minCost')">
+        Cost must be greater than 50.
+          </mat-error>
 
       </mat-form-field>
   

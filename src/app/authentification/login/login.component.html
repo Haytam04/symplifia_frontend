@@ -23,7 +23,8 @@
       Login
     </button>
     <div class="new-acc-container">
-      <a [routerLink]="['/sign-up']">If you d'ont have account, Create a new account</a>
+      <a>If you don't have an account.</a>
+      <a [routerLink]="['/sign-up']">Create a new account</a>
     </div>
     <div *ngIf="loginFailed" class="error">
       Authentication failed. User not found.

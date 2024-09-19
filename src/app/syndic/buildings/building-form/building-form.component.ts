@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Building } from 'src/app/models/Building';
 import { emptyValidator } from 'src/app/validators/emptyValidator';
+import { minCostValidator } from 'src/app/validators/minCostValidator';
 
 @Component({
   selector: 'app-building-form',
@@ -29,7 +30,7 @@ export class BuildingFormComponent {
 
     this.buildingForm = this.fb.group({
       name: [this.data.building?.name || '', [ Validators.maxLength(30), emptyValidator() ]],
-      syndicPrice: [this.data.building?.syndicPrice || '', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      syndicPrice: [this.data.building?.syndicPrice || '', [ Validators.pattern('^[0-9]*$'), minCostValidator(50)]],
       location: [this.data.building?.location || '', [ Validators.maxLength(30), emptyValidator() ]]
     });
   }

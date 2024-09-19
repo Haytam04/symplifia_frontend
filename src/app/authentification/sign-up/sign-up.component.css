@@ -50,8 +50,12 @@ form {
 .error-phone {
   color: #f44336;
 }
+.new-acc-container {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
 .new-acc-container, a  {
-  text-decoration: none;
-  margin-top: 10px;
-  color: #333;
+  margin-top: 5px;
+  color: #35488d;
 }

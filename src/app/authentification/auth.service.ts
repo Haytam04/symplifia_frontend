@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environments';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private Url = 'http://localhost:8080/api/auth/'
+  private Url = environment.apiUrls.auth;
   
 
   constructor(private http: HttpClient) {}
@@ -25,6 +26,4 @@ export class AuthService {
   checkPhoneNumberExists(phoneNumber: string): Observable<any> {
     return this.http.get<boolean>(this.Url +'check-phone/'+phoneNumber);
   }
-
-
 }
