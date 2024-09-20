@@ -11,6 +11,6 @@ export class NotFoundComponent {
   constructor(private router: Router) { }
 
   goHome() {
-    this.router.navigate(['/']); // Redirects to home page
+    this.router.navigate(['/']);
   }
 }

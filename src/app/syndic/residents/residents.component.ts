@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ResidentsService } from './residents.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Resident } from 'src/app/models/Resident';
 import { Invoice } from 'src/app/models/Invoice';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ListMonthsComponent } from './list-months/list-months.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-residents',
@@ -21,8 +21,6 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
   displayedColumns: string[] = ['fullName', 'phoneNumber', 'buildingName', 'paymentStatus','details'];
   selectedYear: number;
   currentMonth: number = new Date().getMonth() + 1;
-  
-  // availableYears: number[] = [2023 , new Date().getFullYear()];
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -96,7 +94,6 @@ export class ResidentsComponent implements OnInit , AfterViewInit {
       width: '750px',
       data: {resident, invoices: resident.invoices, currentMonth: this.currentMonth }
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.fetchResidents(this.idSyndic, this.selectedYear);
     });

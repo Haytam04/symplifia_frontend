@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emptyValidator } from 'src/app/validators/emptyValidator';
 import { passwordValidator } from 'src/app/validators/passwordValidator';
-import * as CryptoJS from 'crypto-js'; // Import crypto-js
+import * as CryptoJS from 'crypto-js'; 
 
 @Component({
   selector: 'app-login',

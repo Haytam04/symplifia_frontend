@@ -14,13 +14,13 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
 })
 export class UserComponent {
   invoices: Invoice[] = [];
-  months = Array.from({ length: 12 }, (_, i) => i + 1); // Array from 1 to 12 representing months
+  months = Array.from({ length: 12 }, (_, i) => i + 1);
   idUser: any;
 
   constructor(
     private route: Router,
     private userService: UserService,
-    private dialog: MatDialog, // Assuming AuthService is a service that provides access to user data
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {

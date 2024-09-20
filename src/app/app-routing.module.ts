@@ -39,7 +39,7 @@ const routes: Routes = [
     path: 'user', component: UserComponent
   },
   {
-    path: '**', redirectTo: 'not-found'  // routes li makayninch kay redirectiw l 404
+    path: '**', redirectTo: 'not-found'
   }
     
 ]; 

@@ -2,13 +2,11 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <h1>Register</h1>
      
-    <!-- Full Name -->
     <mat-form-field>
       <input matInput placeholder="Full Name" formControlName="fullName" required>
       <mat-error *ngIf="signUpForm.get('fullName')?.hasError('empty')">Name cannot be empty</mat-error>
     </mat-form-field>
   
-    <!-- Phone Number -->
     <mat-form-field>
       <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
       <mat-error *ngIf="signUpForm.get('phoneNumber')?.hasError('empty')">Phone number cannot be empty.</mat-error>
@@ -17,7 +15,6 @@
       <mat-error *ngIf="signUpForm.get('phoneNumber')?.hasError('minlength')">Phone number must be 10 digits.</mat-error>
     </mat-form-field>
     
-    <!-- Password -->
     <mat-form-field>
       <input matInput type="password" placeholder="Password" formControlName="password" required>
       <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">Password must contain at least 8 characters.</mat-error>
@@ -25,16 +22,12 @@
       <mat-error *ngIf="signUpForm.get('password')?.hasError('invalidPassword')">Password must contain letters and numbers.</mat-error>
     </mat-form-field>
   
- 
-    <!-- Role Selection -->
     <mat-radio-group formControlName="role">
       <mat-radio-button (click)="onRoleChanged('resident')" value="resident">resident</mat-radio-button>
       <mat-radio-button (click)="onRoleChanged('syndic')" value="syndic">syndic</mat-radio-button>
     </mat-radio-group>
   
-    <!-- For Resident Role -->
     <div *ngIf="signUpForm.get('role')?.value === 'resident'">
-      <!-- Select Syndic -->
       <mat-form-field>
         <mat-select placeholder="Select Syndic" formControlName="selectedSyndic" (selectionChange)="onSyndicChange($event.value)" >
           <mat-option *ngFor="let syndic of syndics" [value]="syndic.idSyndic">
@@ -44,7 +37,6 @@
         <mat-error *ngIf="signUpForm.get('selectedSyndic')?.hasError('required')">Syndic is required</mat-error>
       </mat-form-field>
   
-      <!-- Select Building -->
       <mat-form-field>
         <mat-select placeholder="Select Building" formControlName="selectedBuilding">
           <mat-option *ngFor="let building of buildings" [value]="building.idBuilding">
@@ -55,20 +47,17 @@
       </mat-form-field>
     </div>
   
-    <!-- For Syndic Role -->
     <div *ngIf="signUpForm.get('role')?.value === 'syndic'">
-      <!-- Bank Name -->
       <mat-form-field>
         <input matInput placeholder="Bank Name" formControlName="bankName">
         <mat-error *ngIf="signUpForm.get('bankName')?.hasError('required')">Bank name is required</mat-error>
       </mat-form-field>
     
-  
-      <!-- Bank Account -->
       <mat-form-field>
         <input matInput placeholder="Bank Account" formControlName="bankAccount">
         <mat-error *ngIf="signUpForm.get('bankAccount')?.hasError('required')">Bank account is required</mat-error>
       </mat-form-field>
+
     </div>
     <button mat-raised-button type="submit" color="primary">Sign Up</button>
     <div class="new-acc-container">

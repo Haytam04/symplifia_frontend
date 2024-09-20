@@ -46,7 +46,7 @@ h1 {
 }
 .dialog-container {
   width: 700px;
-  margin: 0 auto; /* Keeps the dialog responsive vertically */
+  margin: 0 auto; 
   overflow-y: auto;
 }
 
@@ -106,7 +106,7 @@ h1 {
   .dialog-container {
     max-height: calc(100vh - 100px);
     width: 400px;
-    margin: auto; /* Keeps the dialog responsive vertically */
+    margin: auto;
     overflow-y: auto;
   }
   .month-cards { 

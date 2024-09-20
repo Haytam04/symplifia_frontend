@@ -13,10 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./payment-dialog.component.css']
 })
 export class PaymentDialogComponent {
-  @Output() paymentConfirmed: EventEmitter<void> = new EventEmitter<void>();
   paymentMethod: string = 'BankTransfer';
   idUser: any;
-
 
   constructor(
       public dialogRef: MatDialogRef<PaymentDialogComponent>,
@@ -26,8 +24,6 @@ export class PaymentDialogComponent {
       private snackBar: MatSnackBar,
       ) 
   {}
-
-
 
   ngOnInit(): void {
     this.idUser = this.route.snapshot.params['idUser'];
@@ -53,7 +49,6 @@ export class PaymentDialogComponent {
       (response) => {
         console.log('Invoice created successfully', response);
         this.dialogRef.close(true);
-        this.paymentConfirmed.emit();
         this.showSnackbar('Payment sent, Waiting for syndic confirmation');
       },
       (error) => {

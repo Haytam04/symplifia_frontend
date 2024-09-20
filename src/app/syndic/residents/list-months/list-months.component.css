@@ -5,10 +5,10 @@
   .month-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly; /* Center the cards */
+    justify-content: space-evenly;
   }
   .dialog-container {
-    max-height: calc(100vh - 150px); /* Keeps the dialog responsive vertically */
+    max-height: calc(100vh - 150px); 
     overflow-y: auto;
   }
   .month-card {
@@ -30,8 +30,8 @@
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Centers content vertically */
-    padding: 0 10px; /* Add some padding */
+    align-items: center; 
+    padding: 0 10px; 
   }
   mat-icon {
     cursor: pointer;
@@ -55,16 +55,16 @@
   }
   
   .month-card.paid {
-    background-color: #58df78; /* Green background for Payed */
+    background-color: #58df78; 
   }
   
   .month-card.pending {
-    background-color: #60c7ff; /* Blue background for Pending */
+    background-color: #60c7ff; 
   }
   
   .month-card.not-paid {
-    background-color: #e65662; /* Red background for Not Paid */
+    background-color: #e65662; 
   }
   .month-card.not-started {
-    background-color: #a2999a; /* Red background for Not Paid */
+    background-color: #a2999a; 
   }

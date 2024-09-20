@@ -20,7 +20,7 @@ export class BuildingFormComponent {
     private fb: FormBuilder,
     private buildingService: BuildingService,
     private dialogRef: MatDialogRef<BuildingFormComponent>,
-    private snackBar: MatSnackBar,  // injecting MatSnackBar service to display notifications in the UI.
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data : { building: Building, isUpdate: boolean, idSyndic: string }
   ) {
     this.idSyndic = data.idSyndic;

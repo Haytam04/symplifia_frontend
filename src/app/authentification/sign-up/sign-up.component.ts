@@ -48,7 +48,6 @@ export class SignUpComponent {
       return ;
     }
     
-    // kan fetche les syndics fl first render dyal page
     this.apiService.getSyndics().subscribe(data => {
       this.syndics = data;
     });
@@ -115,7 +114,6 @@ export class SignUpComponent {
           if (exists) {
             this.phoneExist = true;
           } else {
-            // Proceed with registration
             if (formData.role === 'syndic') {
               let newSyndic = {
                 fullName: formData.fullName,

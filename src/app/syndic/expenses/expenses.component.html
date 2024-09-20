@@ -4,20 +4,6 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Expense Name" #input>
   </mat-form-field>
 
-  <!-- <mat-form-field>
-    <mat-label>Start Date</mat-label>
-    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="startDatePicker" [(ngModel)]="startDate" (dateChange)="applyDateFilter()" placeholder="Start Date">
-    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #startDatePicker></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>End Date</mat-label>
-    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="endDatePicker" [(ngModel)]="endDate" (dateChange)="applyDateFilter()" placeholder="End Date">
-    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #endDatePicker></mat-datepicker>
-  </mat-form-field> -->
-
   <button mat-raised-button color="primary" (click)="openCreateExpenseDialog()">Create Expense</button>
 </div>
 <div class="mat-elevation-z8">

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FormServiceService {
-  private syndicUrl = environment.apiUrls.syndics; // Adjust URL if needed
+  private syndicUrl = environment.apiUrls.syndics;
   private buildingUrl = environment.apiUrls.buildings;
 
   constructor(private http: HttpClient) { }

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BuildingService } from './syndic/buildings/building.service';
 import { DashboardComponent } from './syndic/dashboard/dashboard.component';
 import { BuildingsComponent } from './syndic/buildings/buildings.component';
 import { ResidentsComponent } from './syndic/residents/residents.component';

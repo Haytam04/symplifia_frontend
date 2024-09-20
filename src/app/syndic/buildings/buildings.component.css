@@ -57,7 +57,7 @@ mat-form-field {
   }
 
   .mat-mdc-header-cell, .mat-mdc-cell {
-    font-size: 12px; /* Smaller font for smaller screens */
+    font-size: 12px;
     padding: 4px;
   }
 }
